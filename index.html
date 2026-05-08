@@ -711,27 +711,30 @@ a, button, .clickable, .btn, .desktop-icon, .start-btn, .menubar-item, .titlebar
   cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M5 3 L5 23 L10 18 L13 26 L16 25 L13 17 L20 17 Z' fill='white' stroke='black' stroke-width='1.5'/%3E%3C/svg%3E") 0 0, pointer;
 }
 
+/* Foto sólo visible en móvil, dentro del notepad */
+.mobile-photo{display:none}
+
 /* ===== RESPONSIVE ===== */
 
-/* Tablet / móvil ancho (≤900px) */
+/* Tablet (≤900px) */
 @media (max-width: 900px){
   .windows-area{
     margin-left:0;
     grid-template-columns:1fr;
+    gap:12px;
   }
   .desktop-icons{
     flex-direction:row;
     flex-wrap:wrap;
     position:static;
-    margin-bottom:20px;
-    gap:12px;
+    margin-bottom:16px;
+    gap:8px;
   }
-  .desktop-icon{width:72px}
+  .desktop-icon{width:68px}
   .win-photo, .win-paint{width:100%}
   .taskbar-tabs{display:none}
   .taskbar-tab.first-show{display:flex}
-  .section-block{padding:30px 16px}
-  /* Proyectos: ocultar sidebar, tarjetas en 2 columnas */
+  .section-block{padding:28px 14px}
   .projects-body{grid-template-columns:1fr !important}
   .projects-body .listbox{display:none}
   .projects-cards{grid-column:1 / -1}
@@ -740,21 +743,38 @@ a, button, .clickable, .btn, .desktop-icon, .start-btn, .menubar-item, .titlebar
 /* Móvil (≤600px) */
 @media (max-width: 600px){
   .titlebar-text{font-size:10px}
-  .menubar-item{padding:2px 5px;font-size:10px}
-  .desktop{padding:10px;padding-bottom:60px}
-  .section-block{padding:16px 8px}
+  .menubar{overflow-x:auto;flex-wrap:nowrap}
+  .menubar-item{white-space:nowrap;font-size:10px;padding:2px 5px}
+  .desktop{padding:8px;padding-bottom:40px}
+  .section-block{padding:14px 8px}
   .section-block .window{max-width:100%}
 
-  /* Ocultar foto en hero: ahorra espacio */
+  /* Ocultar ventana de foto separada — la foto aparece dentro del CV */
   .win-photo{display:none}
 
-  /* Skill rows: etiqueta flexible */
-  .skill-row{grid-template-columns:110px 1fr 40px}
+  /* Mostrar foto inline en el notepad */
+  .mobile-photo{
+    display:block;
+    float:right;
+    width:90px;
+    height:90px;
+    object-fit:cover;
+    object-position:top center;
+    margin:0 0 10px 10px;
+    border:2px solid #404040;
+    box-shadow:1px 1px 0 0 #000;
+  }
 
-  /* Marquee más pequeño */
+  /* Ocultar ventana de skills (no esencial en móvil) */
+  .win-paint{display:none}
+
+  /* Skill rows */
+  .skill-row{grid-template-columns:100px 1fr 36px}
+
+  /* Marquee */
   .marquee-bar{font-size:10px;padding:4px 6px}
 
-  /* Botones del contacto: apilar */
+  /* Botones del contacto */
   .section-block [href^="mailto"],
   .section-block [href^="tel"],
   .section-block [href*="framer"]{
@@ -763,40 +783,40 @@ a, button, .clickable, .btn, .desktop-icon, .start-btn, .menubar-item, .titlebar
     font-size:10px;
     padding:4px 6px;
   }
-  /* Proyectos: 1 columna en móvil */
+
+  /* Proyectos: 1 columna */
   .projects-cards{grid-template-columns:1fr !important}
-  /* Empresas: 2 columnas en móvil */
+
+  /* Empresas: 2 columnas */
   .companies-grid{grid-template-columns:repeat(2,1fr) !important}
 }
 
 /* Móvil pequeño / portrait (≤480px) */
 @media (max-width: 480px){
-  .desktop{padding:6px;padding-bottom:60px}
+  .desktop{padding:6px;padding-bottom:36px}
   .section-block{padding:10px 6px}
-
-  /* Titlebar: acortar texto */
+  .desktop-icons{gap:4px}
+  .desktop-icon{width:58px}
+  .desktop-icon-img{width:32px;height:32px}
+  .desktop-icon-label{font-size:10px}
+  .windows-area{gap:8px}
   .titlebar-text{font-size:9px}
-
-  /* Ventana foto Y skills: ocultar en hero para no saturar */
-  .win-photo, .win-paint{display:none}
-
-  /* Proyectos: tarjetas en 1 columna */
   .win-cv{max-width:100%}
+
+  /* Foto más pequeña en pantallas muy angostas */
+  .mobile-photo{width:72px;height:72px}
 
   /* Proyectos y empresas: 1 columna */
   .projects-cards{grid-template-columns:1fr !important}
   .companies-grid{grid-template-columns:1fr !important}
 
-  /* Educación: tabs más compactos */
+  /* Educación: tabs compactos */
   .tab{padding:3px 8px 5px;font-size:10px}
 
-  /* Taskbar más delgado */
+  /* Taskbar */
   .taskbar{height:28px}
-  body{padding-bottom:28px}
-
-  /* Menubar: scroll horizontal si es necesario */
-  .menubar{overflow-x:auto;flex-wrap:nowrap}
-  .menubar-item{white-space:nowrap;font-size:10px;padding:2px 5px}
+  .start-btn span{display:none}
+  .system-tray .tray-icon:first-child{display:none}
 }
 </style>
 
@@ -908,6 +928,7 @@ a, button, .clickable, .btn, .desktop-icon, .start-btn, .menubar-item, .titlebar
   </div>
   <div class="window-body">
     <div class="notepad-content" style="font-size:13px;line-height:1.7">
+      <img src="retrato.jpg" alt="Emmanuel Juárez" class="mobile-photo">
       <h2 style="font-size:18px;margin-bottom:14px;text-decoration:none">Emmanuel Alejandro Juárez del Río</h2>
       <p style="font-size:12px;color:#000080;margin-bottom:14px"><strong>Estudiante de Ingeniería Industrial · Universidad La Salle Bajío</strong></p>
 
