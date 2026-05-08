@@ -787,8 +787,21 @@ a, button, .clickable, .btn, .desktop-icon, .start-btn, .menubar-item, .titlebar
   /* Proyectos: 1 columna */
   .projects-cards{grid-template-columns:1fr !important}
 
-  /* Empresas: 2 columnas */
-  .companies-grid{grid-template-columns:repeat(2,1fr) !important}
+  /* Empresas: 1 columna, tarjetas horizontales */
+  .companies-grid{grid-template-columns:1fr !important}
+  .company-titlebar{display:none}
+  .company-body{
+    display:flex !important;
+    flex-direction:row !important;
+    align-items:center !important;
+    text-align:left !important;
+    padding:10px 12px !important;
+    gap:12px;
+  }
+  .company-body svg{
+    flex-shrink:0;
+    margin:0 !important;
+  }
 }
 
 /* Móvil pequeño / portrait (≤480px) */
@@ -806,9 +819,8 @@ a, button, .clickable, .btn, .desktop-icon, .start-btn, .menubar-item, .titlebar
   /* Foto más pequeña en pantallas muy angostas */
   .mobile-photo{width:72px;height:72px}
 
-  /* Proyectos y empresas: 1 columna */
+  /* Proyectos: 1 columna */
   .projects-cards{grid-template-columns:1fr !important}
-  .companies-grid{grid-template-columns:1fr !important}
 
   /* Educación: tabs compactos */
   .tab{padding:3px 8px 5px;font-size:10px}
@@ -1638,11 +1650,11 @@ a, button, .clickable, .btn, .desktop-icon, .start-btn, .menubar-item, .titlebar
       <div class="companies-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
 
     <a href="https://instagram.com/lecafedemarie_leon?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener" style="text-decoration:none;color:#000">
-      <div class="window" style="cursor:pointer">
-        <div class="titlebar" style="padding:2px 3px;font-size:10px">
+      <div class="window company-card" style="cursor:pointer">
+        <div class="titlebar company-titlebar" style="padding:2px 3px;font-size:10px">
           <div class="titlebar-left"><span class="titlebar-text">le-cafe-de-marie.lnk</span></div>
         </div>
-        <div class="window-body" style="text-align:center;padding:14px 8px">
+        <div class="window-body company-body" style="text-align:center;padding:14px 8px">
           <svg width="48" height="48" viewBox="0 0 32 32" shape-rendering="crispEdges" style="margin:0 auto 6px;display:block">
             <rect x="6" y="10" width="20" height="18" fill="#fff" stroke="#000"/>
             <path d="M8 10 L16 4 L24 10" fill="#cc0000" stroke="#000"/>
@@ -1657,11 +1669,11 @@ a, button, .clickable, .btn, .desktop-icon, .start-btn, .menubar-item, .titlebar
     </a>
 
     <a href="https://www.herraidea.com/" target="_blank" rel="noopener" style="text-decoration:none;color:#000">
-      <div class="window" style="cursor:pointer">
-        <div class="titlebar" style="padding:2px 3px;font-size:10px">
+      <div class="window company-card" style="cursor:pointer">
+        <div class="titlebar company-titlebar" style="padding:2px 3px;font-size:10px">
           <div class="titlebar-left"><span class="titlebar-text">herraidea.lnk</span></div>
         </div>
-        <div class="window-body" style="text-align:center;padding:14px 8px">
+        <div class="window-body company-body" style="text-align:center;padding:14px 8px">
           <svg width="48" height="48" viewBox="0 0 32 32" shape-rendering="crispEdges" style="margin:0 auto 6px;display:block">
             <rect x="4" y="14" width="24" height="14" fill="#808080" stroke="#000"/>
             <rect x="10" y="6" width="3" height="10" fill="#404040" stroke="#000"/>
@@ -1677,11 +1689,11 @@ a, button, .clickable, .btn, .desktop-icon, .start-btn, .menubar-item, .titlebar
     </a>
 
     <a href="https://instagram.com/bymuromio?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener" style="text-decoration:none;color:#000">
-      <div class="window" style="cursor:pointer">
-        <div class="titlebar" style="padding:2px 3px;font-size:10px">
+      <div class="window company-card" style="cursor:pointer">
+        <div class="titlebar company-titlebar" style="padding:2px 3px;font-size:10px">
           <div class="titlebar-left"><span class="titlebar-text">muromio.lnk</span></div>
         </div>
-        <div class="window-body" style="text-align:center;padding:14px 8px">
+        <div class="window-body company-body" style="text-align:center;padding:14px 8px">
           <svg width="48" height="48" viewBox="0 0 32 32" shape-rendering="crispEdges" style="margin:0 auto 6px;display:block">
             <rect x="3" y="8" width="26" height="20" fill="#e8d4a0" stroke="#000"/>
             <rect x="6" y="14" width="6" height="14" fill="#a0826d" stroke="#000"/>
