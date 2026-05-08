@@ -63,6 +63,8 @@ body::before{
   font-family:'Pixelated MS Sans Serif','MS Sans Serif',Tahoma,sans-serif;
   font-size:11px;
   position:relative;
+  min-width:0;
+  max-width:100%;
 }
 
 /* Barra de título */
@@ -255,6 +257,7 @@ body::before{
   grid-template-columns:1fr 1fr;
   gap:20px;
   align-items:start;
+  min-width:0;
 }
 
 /* Ventanas con tamaños y posiciones específicas */
@@ -708,7 +711,9 @@ a, button, .clickable, .btn, .desktop-icon, .start-btn, .menubar-item, .titlebar
   cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M5 3 L5 23 L10 18 L13 26 L16 25 L13 17 L20 17 Z' fill='white' stroke='black' stroke-width='1.5'/%3E%3C/svg%3E") 0 0, pointer;
 }
 
-/* Responsive */
+/* ===== RESPONSIVE ===== */
+
+/* Tablet / móvil ancho (≤900px) */
 @media (max-width: 900px){
   .windows-area{
     margin-left:0;
@@ -725,12 +730,73 @@ a, button, .clickable, .btn, .desktop-icon, .start-btn, .menubar-item, .titlebar
   .win-photo, .win-paint{width:100%}
   .taskbar-tabs{display:none}
   .taskbar-tab.first-show{display:flex}
+  .section-block{padding:30px 16px}
+  /* Proyectos: ocultar sidebar, tarjetas en 2 columnas */
+  .projects-body{grid-template-columns:1fr !important}
+  .projects-body .listbox{display:none}
+  .projects-cards{grid-column:1 / -1}
 }
+
+/* Móvil (≤600px) */
 @media (max-width: 600px){
-  body{font-size:11px}
   .titlebar-text{font-size:10px}
   .menubar-item{padding:2px 5px;font-size:10px}
   .desktop{padding:10px;padding-bottom:60px}
+  .section-block{padding:16px 8px}
+  .section-block .window{max-width:100%}
+
+  /* Ocultar foto en hero: ahorra espacio */
+  .win-photo{display:none}
+
+  /* Skill rows: etiqueta flexible */
+  .skill-row{grid-template-columns:110px 1fr 40px}
+
+  /* Marquee más pequeño */
+  .marquee-bar{font-size:10px;padding:4px 6px}
+
+  /* Botones del contacto: apilar */
+  .section-block [href^="mailto"],
+  .section-block [href^="tel"],
+  .section-block [href*="framer"]{
+    min-width:0;
+    flex:1;
+    font-size:10px;
+    padding:4px 6px;
+  }
+  /* Proyectos: 1 columna en móvil */
+  .projects-cards{grid-template-columns:1fr !important}
+  /* Empresas: 2 columnas en móvil */
+  .companies-grid{grid-template-columns:repeat(2,1fr) !important}
+}
+
+/* Móvil pequeño / portrait (≤480px) */
+@media (max-width: 480px){
+  .desktop{padding:6px;padding-bottom:60px}
+  .section-block{padding:10px 6px}
+
+  /* Titlebar: acortar texto */
+  .titlebar-text{font-size:9px}
+
+  /* Ventana foto Y skills: ocultar en hero para no saturar */
+  .win-photo, .win-paint{display:none}
+
+  /* Proyectos: tarjetas en 1 columna */
+  .win-cv{max-width:100%}
+
+  /* Proyectos y empresas: 1 columna */
+  .projects-cards{grid-template-columns:1fr !important}
+  .companies-grid{grid-template-columns:1fr !important}
+
+  /* Educación: tabs más compactos */
+  .tab{padding:3px 8px 5px;font-size:10px}
+
+  /* Taskbar más delgado */
+  .taskbar{height:28px}
+  body{padding-bottom:28px}
+
+  /* Menubar: scroll horizontal si es necesario */
+  .menubar{overflow-x:auto;flex-wrap:nowrap}
+  .menubar-item{white-space:nowrap;font-size:10px;padding:2px 5px}
 }
 </style>
 
@@ -1006,14 +1072,14 @@ a, button, .clickable, .btn, .desktop-icon, .start-btn, .menubar-item, .titlebar
         <div class="excel-formula">Cargo</div>
       </div>
       <div style="overflow-x:auto">
-        <table class="excel-table" style="min-width:780px">
+        <table class="excel-table" style="min-width:560px">
           <thead>
             <tr>
               <th class="col-header"></th>
               <th>A</th>
               <th>B</th>
               <th>C</th>
-              <th style="min-width:380px">D</th>
+              <th style="min-width:220px">D</th>
             </tr>
           </thead>
           <tbody>
@@ -1090,7 +1156,7 @@ a, button, .clickable, .btn, .desktop-icon, .start-btn, .menubar-item, .titlebar
       <span class="menubar-item"><u>F</u>avoritos</span>
       <span class="menubar-item">A<u>y</u>uda</span>
     </div>
-    <div class="window-body" style="display:grid;grid-template-columns:200px 1fr;gap:6px">
+    <div class="window-body projects-body" style="display:grid;grid-template-columns:200px 1fr;gap:6px">
 
   <!-- Sidebar tipo Explorer -->
   <div class="listbox" style="max-height:none">
@@ -1125,7 +1191,7 @@ a, button, .clickable, .btn, .desktop-icon, .start-btn, .menubar-item, .titlebar
   </div>
 
   <!-- Right pane: project cards -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+  <div class="projects-cards" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
 
     <!-- Proyecto 1: CNC -->
     <div class="window" style="border-width:2px">
@@ -1548,7 +1614,7 @@ a, button, .clickable, .btn, .desktop-icon, .start-btn, .menubar-item, .titlebar
     </div>
     <div class="window-body">
       <div style="font-size:11px;margin-bottom:8px">Empresas en las que he trabajado:</div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+      <div class="companies-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
 
     <a href="https://instagram.com/lecafedemarie_leon?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener" style="text-decoration:none;color:#000">
       <div class="window" style="cursor:pointer">
