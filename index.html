@@ -1807,6 +1807,10 @@ a, button, .clickable, .btn, .desktop-icon, .start-btn, .menubar-item, .titlebar
 </div>
 
 <script>
+// Forzar inicio en la parte superior (evita scroll restoration del navegador)
+if (history.scrollRestoration) history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+
 // Reloj en taskbar
 function updateClock(){
   const now = new Date();
